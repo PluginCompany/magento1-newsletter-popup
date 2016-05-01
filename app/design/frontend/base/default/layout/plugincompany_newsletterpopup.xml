@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<layout>
+    <cms_page>
+        <block type="plugincompany_newsletterpopup/popup" as="newsletterpopup" name="newsletterpopup" after="-"
+               template="plugincompany/newsletter/popup.phtml"/>
+        <reference name="content">
+            <action method="append" ifconfig="plugincompany_newsletterpopup/general/show_cms">
+                <block>newsletterpopup</block>
+            </action>
+        </reference>
+    </cms_page>
+    <cms_index_index>
+        <reference name="content">
+            <action method="unsetChild">
+                <child>newsletterpopup</child>
+            </action>
+            <action method="append" ifconfig="plugincompany_newsletterpopup/general/show_homepage">
+                <block>newsletterpopup</block>
+            </action>
+        </reference>
+    </cms_index_index>
+    <catalog_category_view>
+        <block type="plugincompany_newsletterpopup/popup" as="newsletterpopup" name="newsletterpopup" after="-"
+               template="plugincompany/newsletter/popup.phtml"/>
+        <reference name="content">
+            <action method="append" ifconfig="plugincompany_newsletterpopup/general/show_categories">
+                <block>newsletterpopup</block>
+            </action>
+        </reference>
+    </catalog_category_view>
+    <catalog_product_view>
+        <block type="plugincompany_newsletterpopup/popup" as="newsletterpopup" name="newsletterpopup" after="-"
+               template="plugincompany/newsletter/popup.phtml"/>
+        <reference name="content">
+            <action method="append" ifconfig="plugincompany_newsletterpopup/general/show_product">
+                <block>newsletterpopup</block>
+            </action>
+        </reference>
+    </catalog_product_view>
+</layout>

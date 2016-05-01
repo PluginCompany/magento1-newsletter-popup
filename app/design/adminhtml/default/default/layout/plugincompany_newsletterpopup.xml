@@ -1,0 +1,26 @@
+<layout>
+    <plugincompany_newsletterpopup_config>
+        <reference name="head">
+            <action method="addItem">
+                <type>js_css</type>
+                <name>plugincompany/lib/fontawesome/css/font-awesome.min.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>plugincompany/lib/fontawesome_picker/css/fontawesome-iconpicker.min.css</name>
+            </action>
+            <action method="addJs">
+                <name>plugincompany/lib/jscolor/jscolor.js</name>
+            </action>
+            <action method="addJs">
+                <name>plugincompany/jquerynoconflict.js</name>
+            </action>
+            <action method="addJs">
+                <name>plugincompany/lib/fontawesome_picker/js/fontawesome-iconpicker.js</name>
+            </action>
+            <action method="addJs">
+                <name>plugincompany/newsletterpopup/adminconfig.js</name>
+            </action>
+        </reference>
+    </plugincompany_newsletterpopup_config>
+</layout>

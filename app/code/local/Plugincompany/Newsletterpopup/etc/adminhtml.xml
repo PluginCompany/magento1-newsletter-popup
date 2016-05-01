@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) 2014-2026 Plugin Company
+ *
+ * This file is part of Newsletter Pop-up, released under the MIT License.
+ * See the LICENSE file in the project root.
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <plugincompany_newsletterpopup translate="title"
+                                                                   module="plugincompany_newsletterpopup">
+                                        <title>Newsletter Popup</title>
+                                    </plugincompany_newsletterpopup>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <menu>
+        <newsletter>
+            <children>
+                <newsletter_popup>
+                    <title>Newsletter Popup</title>
+                    <sort_order>1000</sort_order>
+                    <action>adminhtml/system_config/edit/section/plugincompany_newsletterpopup</action>
+                </newsletter_popup>
+            </children>
+        </newsletter>
+    </menu>
+</config>

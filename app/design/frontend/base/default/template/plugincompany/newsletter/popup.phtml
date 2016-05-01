@@ -1,0 +1,368 @@
+<?php $jsUrl = Mage::getBaseUrl('js'). 'plugincompany/lib/'; ?>
+<?php $jsRootUrl = Mage::getBaseUrl('js'). 'plugincompany/'; ?>
+<?php if($this->getConfig('libraries/fontawesome')){ ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo $jsUrl; ?>fontawesome/css/font-awesome.min.css" />
+<?php } ?>
+<?php if($this->getConfig('libraries/animate_css')){ ?>
+<link rel="stylesheet" type="text/css" href="<?php echo $jsUrl; ?>/animate.min.css" />
+<?php } ?>
+<style type="text/css">
+    .pc_newsletter
+    {
+        width:800px;
+        height:400px;
+        position:fixed;
+        margin-left:-400px;
+        left:50%;
+        top:10%;
+        display:none;
+        text-align:center;
+        z-index:10000;
+    }
+
+    .pc_overlay{
+        position:fixed;
+        left:0px;
+        top:0px;
+        width:100%;
+        height:100%;
+        background:url('<?php echo Mage::getBaseUrl('js');?>plugincompany/newsletterpopup/popup_bg.png');
+        z-index: 9999;
+        display:none;
+    }
+
+    .pc_newsletter .inner.right {
+        background: <?php echo $this->getConfig('right_column/right_background_clr'); ?>;
+        height:400px;
+        display:inline-block;
+        z-index:1;
+        float:left;
+        width:0px;
+        -webkit-transition-delay:1s!important;
+        -moz-transition-delay:1s!important;
+        -o-transition-delay:1s!important;
+        transition-delay:1s!important;
+        transition: width 1s;
+        -webkit-transition: width 1s;
+        -moz-transition: width 1s;
+        -o-transition: width 1s;
+        overflow:hidden;
+    }
+
+    .pc_newsletter .inner.left {
+        background: <?php echo $this->getConfig('left_column/left_background_clr'); ?>;
+        width:400px;
+        height:400px;
+        z-index:2;
+        position:relative;
+        float:left;
+        display:none;
+        overflow:hidden;
+    }
+
+    .pc_rightcontent
+    {
+        display:none;
+        -webkit-animation-delay:2.2s!important;
+        animation-delay:2.2s!important;
+        -o-animation-delay:2.2s!important;
+        -moz-animation-delay:2.2s!important;
+    }
+
+    .pc_leftcontent
+    {
+        display:none;
+        -webkit-animation-delay:2s!important;
+        animation-delay:2s!important;
+        -o-animation-delay:2s!important;
+        -moz-animation-delay:2s!important;
+    }
+
+    .pc_newsletter h2 {
+        padding:10px;
+        padding-top:20px;
+    }
+
+    .pc_newsletter .close {
+        -webkit-animation-delay:4s!important;
+        animation-delay:4s!important;
+        -o-animation-delay:4s!important;
+        -moz-animation-delay:4s!important;
+    }
+
+    .style-5 input[type="text"] {
+        display: block;
+        margin: 10%;
+        width: 80%;
+        font-size: <?php echo $this->getConfig('right_column/placeholder_font_size');?>px;
+        appearance: none;
+        box-shadow: none;
+        border-radius: none;
+        margin-top:25px;
+        height:auto;
+    }
+    .style-5 input[type="text"]:focus {
+        outline: none;
+    }
+    .style-5 input[type="text"] {
+        padding:10px;
+        border: solid 1px #fff;
+        box-shadow: inset 1px 1px 2px 0 #707070;
+        transition: box-shadow 0.3s;
+    }
+    .style-5 input[type="text"]:focus,
+    .style-5 input[type="text"].focus {
+        box-shadow: inset 1px 1px 2px 0 #c9c9c9;
+    }
+    /* #Peter River Flat Button
+        ==================================================*/
+    .peter-river-flat-button {
+        position: relative;
+        vertical-align: top;
+        width: 80%;
+        height: 60px;
+        padding: 0;
+        font-size: <?php echo $this->getConfig('right_column/button_text_size');?>px;
+        color: <?php echo $this->getConfig('right_column/button_text_color');?>;
+        text-align: center;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+        background: <?php echo $this->getConfig('right_column/button_color');?>;
+        border: 0;
+        border-bottom: 2px solid <?php echo $this->getConfig('right_column/button_border_color'); ?>;
+        cursor: pointer;
+        -webkit-box-shadow: inset 0 -2px <?php echo $this->getConfig('right_column/button_border_color'); ?>;
+        box-shadow: inset 0 -2px <?php echo $this->getConfig('right_column/button_border_color'); ?>;
+    }
+    .peter-river-flat-button:active {
+        top: 1px;
+        outline: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .closepopup {
+        display: none;
+        position: absolute;
+        top: 4px;
+        right: 6px;
+        color: <?php echo $this->getConfig('right_column/close_button'); ?>;
+        z-index: 10001;
+        cursor: pointer;
+    }
+
+    h2.pc_left_title {
+        font-size:<?php echo $this->getConfig('left_column/left_title_font_size'); ?>px;
+        color:<?php echo $this->getConfig('left_column/left_title_color'); ?>;
+    }
+
+    p.pc_top {
+        font-size:<?php echo $this->getConfig('left_column/left_top_font_size'); ?>px;
+        color:<?php echo $this->getConfig('left_column/left_top_text_color'); ?>;
+        margin:20px;
+    }
+
+    p.pc_bottom {
+        font-size:<?php echo $this->getConfig('left_column/left_text2_font_size'); ?>px;
+        color:<?php echo $this->getConfig('left_column/left_text2_color'); ?>;
+        margin:20px;
+    }
+
+    h2.pc_right_title {
+        font-size:<?php echo $this->getConfig('right_column/right_title_font_size'); ?>px;
+        color:<?php echo $this->getConfig('right_column/right_title_color'); ?>;
+    }
+
+    .pc_success {
+        width: 100%;
+        background: #D5FFCB;
+        border: 3px solid #9CE58A;
+        color: #5C9B4C;
+        font-size: 16px;
+        display:none;
+    }
+
+    .pc_error {
+        width: 100%;
+        background: #FADDD6;
+        border: 3px solid #E59F8A;
+        color: #BB9187;
+        font-size: 16px;
+        display:none;
+    }
+    
+    /* Responsive CSS */
+    @media(max-width:800px) { .pc_newsletter .inner.left { visibility: hidden; width: 0px!important; position: relative } .pc_newsletter .inner.right { position: relative } .pcform_slide { display: none!important } }
+    @media(max-width:400px) { .pc_newsletter { zoom: 0.9 } }
+    @media(max-width:350px) { .pc_newsletter { zoom: 0.7 } }
+
+</style>
+
+<div class="pc_overlay"></div>
+<div class="pc_newsletter animated bounceInDown">
+    <div style="display:inline-block;">
+        <div class="inner left">
+            <div class="pc_leftcontent animated ">
+                <h2 class="pc_left_title"><?php echo $this->getConfig('left_column/left_title');?></h2>
+                <p class="pc_top"><?php echo $this->getConfig('left_column/left_text');?></p>
+                <span style="font-size:<?php echo $this->getConfig('left_column/left_icon_size');?>px">
+                    <i style="color:<?php echo $this->getConfig('left_column/left_icon_color'); ?>" class="fa fa-5x <?php echo $this->getConfig('left_column/left_icon');?>"></i>
+                </span>
+                <p class="pc_bottom"><?php echo $this->getConfig('left_column/left_text2'); ?></p>
+            </div>
+        </div>
+        <div class="inner right">
+            <i class="fa fa-times fa-2x close closepopup"></i>
+            <div class="pc_rightcontent animated bounceInLeft">
+                <h2 class="pc_right_title"><?php echo $this->getConfig('right_column/right_title'); ?></h2>
+                <span style="font-size:<?php echo $this->getConfig('right_column/right_icon_font_size');?>px">
+                    <span class="fa-stack fa-4x">
+                      <i style="color:<?php echo $this->getConfig('right_column/right_icon_color'); ?>" class="fa fa-circle fa-stack-2x animated fadeIn"></i>
+                      <i class="fa <?php echo $this->getConfig('right_column/right_icon');?> fa-stack-1x fa-inverse"></i>
+                    </span>
+                </span>
+                <form id="pc_newsletterform" class="style-5" name="pc_newsletterform" type="POST" action="<?php echo $this->getFormUrl(); ?>">
+                    <input name="email" type="text" style="text-align:center" placeholder="<?php echo $this->getConfig('right_column/email_placeholder'); ?>"></input>
+                    <button type="button" id="pc_submit" class="peter-river-flat-button"><?php echo $this->getConfig('right_column/button_text'); ?></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="pc_msgblock" class="pc_success" style="width: 100%;">
+    </div>
+</div>
+
+    <?php if($this->getConfig('libraries/jquery')){ ?>
+        <script src="<?php echo $jsRootUrl; ?>jquerynoconflict.js" ></script>
+    <?php } ?>
+    <?php if($this->getConfig('libraries/jquery_cookie')){ ?>
+        <script src="<?php echo $jsUrl; ?>jquery.cookie.js" ></script>
+    <?php } ?>
+
+<!--[if lte IE 9]>
+<script type="text/javascript" src="<?php echo $jsUrl; ?>jquery.placeholder.min.js"></script>
+<script type="text/javascript">
+    var oldIE = true;
+    jQuery(document).ready(function() {
+        initPlaceholder();
+    });
+    function initPlaceholder(){
+        if(jQuery().placeholder){
+            jQuery('.pc_newsletter input').placeholder();
+        }else{
+            setTimeout(function() {
+                initPlaceholder()
+            },200);
+        }
+    }
+</script>
+<![endif]-->
+
+    <script type="text/javascript">
+        var pc_submitted = false;
+        if(typeof oldIE == 'undefined'){
+            var oldIE = false;
+        }
+
+        jQuery(document).ready(function(){
+            if(jQuery.cookie('dont_show_newsletter')){
+                return false;
+            }
+            setTimeout(function(){
+                if(!oldIE) {
+                    jQuery('.pc_newsletter,.pc_overlay').appendTo('body');
+                    jQuery('.pc_newsletter').show();
+                    jQuery('.pc_overlay').fadeIn();
+                    jQuery('.pc_newsletter .inner.left').show();
+                    jQuery('.pc_newsletter .inner.right').animate({width:'400px'},1);
+                    jQuery('.pc_rightcontent').show();
+                    jQuery('.pc_leftcontent').show();
+                    jQuery('.pc_newsletter .close').addClass('animated fadeIn').show();
+                }else{
+                    //old IE animations
+                    jQuery('.pc_newsletter,.pc_overlay').appendTo('body');
+                    jQuery('.pc_newsletter .inner.left').show();
+                    jQuery('.pc_leftcontent').show();
+                    jQuery('.pc_newsletter').css('top','-500px').show().animate({top:'10%'},'normal');
+                    jQuery('.pc_overlay').show();
+                    jQuery('.pc_rightcontent').show();
+                    jQuery('.pc_newsletter .inner.right').css('margin-left','-400px').css('width','400px');
+                    jQuery('.pc_newsletter .inner.right').delay(500).animate({marginLeft: '0px'}, 'normal',function() {
+                        jQuery('.pc_newsletter .close').fadeIn();
+                    });
+                }
+            },(<?php echo $this->getConfig('general/delay');?>000+500))
+        });
+
+        jQuery('.pc_newsletter .close,.pc_overlay').click(function(){
+            closeNewsletterPopup();
+        })
+
+        function closeNewsletterPopup(){
+            jQuery('.pc_overlay').fadeOut();
+            jQuery('.pc_newsletter').addClass('bounceOutDown');
+            if(oldIE) {
+                jQuery('.pc_newsletter').fadeOut();
+            }
+            <?php if (!$this->getConfig('general/show_again_after_close')) { ?>
+                jQuery.cookie('dont_show_newsletter', 'yes', { expires: 365, path: '/' });
+            <?php } ?>
+            <?php if (!$this->getConfig('general/show_again_after_subscribe ')) { ?>
+            if(pc_submitted){
+                jQuery.cookie('dont_show_newsletter', 'yes', { expires: 365, path: '/' });
+            }
+            <?php } ?>
+        }
+        jQuery('#pc_submit').click(function() {
+            jQuery('#pc_newsletterform').submit();
+        })
+        jQuery("#pc_newsletterform").submit(function(e)
+        {
+            e.preventDefault(); //STOP default action
+
+            var postData = jQuery(this).serializeArray();
+            var formURL = jQuery(this).attr("action");
+            jQuery.ajax(
+                {
+                    url : formURL,
+                    type: "POST",
+                    data : postData,
+                    success:function(data, textStatus, jqXHR)
+                    {
+                        var data = JSON.parse(data);
+                        if(data.status == 'success'){
+                            jQuery('#pc_msgblock')
+                                .removeClass('pc_error')
+                                .addClass('pc_success')
+                                .text(data.message)
+                                .fadeIn();
+                            pc_submitted = true;
+                            setTimeout(function() {
+                                closeNewsletterPopup();
+                            },1500)
+                        }else if(data.status == 'error'){
+                            jQuery('#pc_msgblock')
+                                .removeClass('pc_success')
+                                .addClass('pc_error')
+                                .text(data.message)
+                                .fadeIn();
+                        }
+                        setTimeout(function(){
+                            jQuery('#pc_msgblock').fadeOut();
+                        },5000)
+                    },
+                    error: function(jqXHR, textStatus, errorThrown)
+                    {
+                        jQuery('#pc_msgblock')
+                            .removeClass('pc_success')
+                            .addClass('pc_error')
+                            .text('Internal error occured')
+                            .fadeIn();
+                        setTimeout(function(){
+                            jQuery('#pc_msgblock').fadeOut();
+                        },5000)
+                    }
+                }
+                );
+            return false;
+        });
+    </script>

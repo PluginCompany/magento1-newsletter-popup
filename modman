@@ -1,0 +1,13 @@
+app/code/local/Plugincompany/Newsletterpopup app/code/local/Plugincompany/Newsletterpopup
+app/design/adminhtml/default/default/layout/plugincompany_newsletterpopup.xml app/design/adminhtml/default/default/layout/plugincompany_newsletterpopup.xml
+app/design/frontend/base/default/layout/plugincompany_newsletterpopup.xml app/design/frontend/base/default/layout/plugincompany_newsletterpopup.xml
+app/design/frontend/base/default/template/plugincompany/newsletter app/design/frontend/base/default/template/plugincompany/newsletter
+app/etc/modules/Plugincompany_Newsletterpopup.xml app/etc/modules/Plugincompany_Newsletterpopup.xml
+js/plugincompany/jquerynoconflict.js js/plugincompany/jquerynoconflict.js
+js/plugincompany/lib/animate.min.css js/plugincompany/lib/animate.min.css
+js/plugincompany/lib/fontawesome js/plugincompany/lib/fontawesome
+js/plugincompany/lib/fontawesome_picker js/plugincompany/lib/fontawesome_picker
+js/plugincompany/lib/jquery.cookie.js js/plugincompany/lib/jquery.cookie.js
+js/plugincompany/lib/jquery.placeholder.min.js js/plugincompany/lib/jquery.placeholder.min.js
+js/plugincompany/lib/jscolor js/plugincompany/lib/jscolor
+js/plugincompany/newsletterpopup js/plugincompany/newsletterpopup
